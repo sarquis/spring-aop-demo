@@ -13,8 +13,8 @@ public class AccountDAOImpl implements AccountDAO {
     }
 
     @Override
-    public void addAccount(Account theAccount) {
-	System.out.println(getClass() + ": ADDING AN ACCOUNT (WITH ACCOUNT ON PARAM)");
+    public void addAccount(Account theAccount, boolean vipFlag) {
+	System.out.println(getClass() + ": ADDING AN ACCOUNT (WITH ACCOUNT ON PARAM, AND BOOLEAN)");
     }
 
 }
