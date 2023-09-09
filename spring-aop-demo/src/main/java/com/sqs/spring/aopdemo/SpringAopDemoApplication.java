@@ -27,6 +27,8 @@ public class SpringAopDemoApplication {
 	theAccountDAO.addAccount(new Account(), true);
 	theAccountDAO.setName("test");
 	theAccountDAO.setServiceCode("test");
+	theAccountDAO.getName();
+	theAccountDAO.getServiceCode();
 	theMembershipDAO.addMembershipAccount();
     }
 }
