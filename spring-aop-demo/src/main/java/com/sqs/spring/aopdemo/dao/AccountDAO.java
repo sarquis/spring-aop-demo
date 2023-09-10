@@ -1,5 +1,7 @@
 package com.sqs.spring.aopdemo.dao;
 
+import java.util.List;
+
 import com.sqs.spring.aopdemo.Account;
 
 public interface AccountDAO {
@@ -15,4 +17,6 @@ public interface AccountDAO {
     String getServiceCode();
 
     void setServiceCode(String serviceCode);
+
+    List<Account> findAccounts();
 }

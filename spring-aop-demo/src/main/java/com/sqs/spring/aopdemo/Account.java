@@ -6,6 +6,9 @@ public class Account {
 
     private String level;
 
+    public Account() {
+    }
+
     public Account(String name, String level) {
 	super();
 	this.name = name;
