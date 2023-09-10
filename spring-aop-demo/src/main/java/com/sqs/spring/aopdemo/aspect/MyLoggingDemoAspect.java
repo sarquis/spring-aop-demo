@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -29,7 +30,7 @@ public class MyLoggingDemoAspect {
 	}
     }
 
-    @AfterReturning(pointcut = "execution(* com.sqs.spring.aopdemo.dao.AccountDAO.findAccounts())", returning = "result")
+    @AfterReturning(pointcut = "execution(* com.sqs.spring.aopdemo.dao.AccountDAO.findAccounts(..))", returning = "result")
     public void afterReturningFindAccountsAdvice(JoinPoint theJoinPoint, List<Account> result) {
 	String methodSign = theJoinPoint.getSignature().toShortString();
 	System.out.println(" # (Logging Order 2) @AfterReturning : " + methodSign);
@@ -37,6 +38,13 @@ public class MyLoggingDemoAspect {
 	System.out.println(" # Post-processind Data");
 	result.forEach(r -> r.setName(r.getName().toUpperCase() + "(OK-modified data)"));
 	System.out.println(" # (Logging Order 2) @AfterReturning RESULT : " + result);
+    }
+
+    @AfterThrowing(pointcut = "execution(* com.sqs.spring.aopdemo.dao.AccountDAO.findAccounts(..))", throwing = "theExc")
+    public void afterThrowingFindAccountsAdvice(JoinPoint theJoinPoint, Throwable theExc) {
+	String methodSign = theJoinPoint.getSignature().toShortString();
+	System.out.println(" # (Logging Order 2) @AfterThrowing : " + methodSign);
+	System.out.println(" # (Logging Order 2) @AfterThrowing The Exception is: " + theExc);
     }
 
 }

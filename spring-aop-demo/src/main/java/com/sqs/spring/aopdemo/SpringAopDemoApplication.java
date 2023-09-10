@@ -21,12 +21,24 @@ public class SpringAopDemoApplication {
     CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 	return runner -> {
 	    // demoTheBeforeAdvice(theAccountDAO, theMembershipDAO);
-	    demoTheAfterReturningAdvice(theAccountDAO);
+	    // demoTheAfterReturningAdvice(theAccountDAO);
+	    demoTheAfterThrowingAdvice(theAccountDAO);
 	};
     }
 
+    private void demoTheAfterThrowingAdvice(AccountDAO theAccountDAO) {
+	try {
+	    boolean tripWire = true;
+	    @SuppressWarnings("unused")
+	    List<Account> theAccounts = theAccountDAO.findAccounts(tripWire);
+	} catch (Exception e) {
+	    System.out.println("\n Main Program: ... caught exeception: " + e);
+	}
+    }
+
+    @SuppressWarnings("unused")
     private void demoTheAfterReturningAdvice(AccountDAO theAccountDAO) {
-	List<Account> theAccounts = theAccountDAO.findAccounts();
+	List<Account> theAccounts = theAccountDAO.findAccounts(false);
 	System.out.println("\n Main Program: \n" + theAccounts);
     }
 
