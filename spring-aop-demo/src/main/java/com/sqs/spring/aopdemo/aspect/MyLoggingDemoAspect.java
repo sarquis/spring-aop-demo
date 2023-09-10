@@ -34,6 +34,9 @@ public class MyLoggingDemoAspect {
 	String methodSign = theJoinPoint.getSignature().toShortString();
 	System.out.println(" # (Logging Order 2) @AfterReturning : " + methodSign);
 	System.out.println(" # (Logging Order 2) @AfterReturning RESULT : " + result);
+	System.out.println(" # Post-processind Data");
+	result.forEach(r -> r.setName(r.getName() + "(OK-modified data)"));
+	System.out.println(" # (Logging Order 2) @AfterReturning RESULT : " + result);
     }
 
 }
