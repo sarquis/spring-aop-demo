@@ -35,7 +35,7 @@ public class MyLoggingDemoAspect {
 	System.out.println(" # (Logging Order 2) @AfterReturning : " + methodSign);
 	System.out.println(" # (Logging Order 2) @AfterReturning RESULT : " + result);
 	System.out.println(" # Post-processind Data");
-	result.forEach(r -> r.setName(r.getName() + "(OK-modified data)"));
+	result.forEach(r -> r.setName(r.getName().toUpperCase() + "(OK-modified data)"));
 	System.out.println(" # (Logging Order 2) @AfterReturning RESULT : " + result);
     }
 
