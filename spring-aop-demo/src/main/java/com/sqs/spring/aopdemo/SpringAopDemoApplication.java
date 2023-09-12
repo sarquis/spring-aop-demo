@@ -22,14 +22,27 @@ public class SpringAopDemoApplication {
 	return runner -> {
 	    // demoTheBeforeAdvice(theAccountDAO, theMembershipDAO);
 	    // demoTheAfterReturningAdvice(theAccountDAO);
-	    demoTheAfterThrowingAdvice(theAccountDAO);
+	    // demoTheAfterThrowingAdvice(theAccountDAO);
+	    demoTheAfterAdvice(theAccountDAO);
 	};
     }
 
-    private void demoTheAfterThrowingAdvice(AccountDAO theAccountDAO) {
+    private void demoTheAfterAdvice(AccountDAO theAccountDAO) {
 	try {
 	    boolean tripWire = true;
 	    @SuppressWarnings("unused")
+	    List<Account> theAccounts = theAccountDAO.findAccounts(!tripWire);
+	    System.out.println("\n");
+	    theAccounts = theAccountDAO.findAccounts(tripWire);
+	} catch (Exception e) {
+	    System.out.println("\n Main Program: ... caught exeception: " + e);
+	}
+    }
+
+    @SuppressWarnings("unused")
+    private void demoTheAfterThrowingAdvice(AccountDAO theAccountDAO) {
+	try {
+	    boolean tripWire = true;
 	    List<Account> theAccounts = theAccountDAO.findAccounts(tripWire);
 	} catch (Exception e) {
 	    System.out.println("\n Main Program: ... caught exeception: " + e);

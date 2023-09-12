@@ -3,6 +3,7 @@ package com.sqs.spring.aopdemo.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -45,6 +46,12 @@ public class MyLoggingDemoAspect {
 	String methodSign = theJoinPoint.getSignature().toShortString();
 	System.out.println(" # (Logging Order 2) @AfterThrowing : " + methodSign);
 	System.out.println(" # (Logging Order 2) @AfterThrowing The Exception is: " + theExc);
+    }
+
+    @After("execution(* com.sqs.spring.aopdemo.dao.AccountDAO.findAccounts(..))")
+    public void afterFinallyFindAccountAdvice(JoinPoint theJoinPoint) {
+	String methodSign = theJoinPoint.getSignature().toShortString();
+	System.out.println(" # (Logging Order 2) @After (finally) : " + methodSign);
     }
 
 }
