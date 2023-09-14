@@ -3,9 +3,11 @@ package com.sqs.spring.aopdemo.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -52,6 +54,22 @@ public class MyLoggingDemoAspect {
     public void afterFinallyFindAccountAdvice(JoinPoint theJoinPoint) {
 	String methodSign = theJoinPoint.getSignature().toShortString();
 	System.out.println(" # (Logging Order 2) @After (finally) : " + methodSign);
+    }
+
+    @Around("execution(* com.sqs.spring.aopdemo.service.TrafficFortuneService.getFortune(..))")
+    public Object aroundGetFortune(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
+
+	String methodSign = theProceedingJoinPoint.getSignature().toShortString();
+	System.out.println(" # @Around : " + methodSign);
+	long begin = System.currentTimeMillis();
+
+	Object result = theProceedingJoinPoint.proceed();
+
+	long end = System.currentTimeMillis();
+	long duration = end - begin;
+	System.out.println(" # Duration: " + duration + " in millis. \n");
+
+	return result;
     }
 
 }

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.sqs.spring.aopdemo.dao.AccountDAO;
 import com.sqs.spring.aopdemo.dao.MembershipDAO;
+import com.sqs.spring.aopdemo.service.TrafficFortuneService;
 
 @SpringBootApplication
 public class SpringAopDemoApplication {
@@ -18,15 +19,24 @@ public class SpringAopDemoApplication {
     }
 
     @Bean // @Bean annotation automatically inject dependency. No need autowire.
-    CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
+    CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO,
+	    TrafficFortuneService theTrafficFortuneService) {
 	return runner -> {
 	    // demoTheBeforeAdvice(theAccountDAO, theMembershipDAO);
 	    // demoTheAfterReturningAdvice(theAccountDAO);
 	    // demoTheAfterThrowingAdvice(theAccountDAO);
-	    demoTheAfterAdvice(theAccountDAO);
+	    // demoTheAfterAdvice(theAccountDAO);
+	    demoTheAroundAdvide(theTrafficFortuneService);
 	};
     }
 
+    private void demoTheAroundAdvide(TrafficFortuneService theTrafficFortuneService) {
+	System.out.println("\nMain Program\n");
+	System.out.println(theTrafficFortuneService.getFortune());
+	System.out.println("\nFinished");
+    }
+
+    @SuppressWarnings("unused")
     private void demoTheAfterAdvice(AccountDAO theAccountDAO) {
 	try {
 	    boolean tripWire = true;
