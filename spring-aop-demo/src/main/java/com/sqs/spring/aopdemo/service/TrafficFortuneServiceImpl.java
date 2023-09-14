@@ -27,4 +27,12 @@ public class TrafficFortuneServiceImpl implements TrafficFortuneService {
 	return getFortune();
     }
 
+    @Override
+    public String getFortunePlus(boolean tripWire) {
+	if (tripWire)
+	    throw new RuntimeException("VIP Major Accident!");
+
+	return getFortune();
+    }
+
 }

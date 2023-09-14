@@ -78,4 +78,20 @@ public class MyLoggingDemoAspect {
 	return result;
     }
 
+    @Around("execution(* com.sqs.spring.aopdemo.service.TrafficFortuneService.getFortunePlus(..))")
+    public Object aroundGetFortuneRethrowException(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
+
+	String methodSign = theProceedingJoinPoint.getSignature().toShortString();
+	System.out.println(" # @Around : " + methodSign);
+
+	Object result = null;
+	try {
+	    result = theProceedingJoinPoint.proceed();
+	    return result;
+	} catch (Exception e) {
+	    System.out.println(" # We have a problem : " + e.getMessage());
+	    throw e;
+	}
+    }
+
 }

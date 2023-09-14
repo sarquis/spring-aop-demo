@@ -6,4 +6,6 @@ public interface TrafficFortuneService {
 
     String getFortune(boolean tripWire);
 
+    String getFortunePlus(boolean tripWire);
+
 }

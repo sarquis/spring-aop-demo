@@ -27,10 +27,19 @@ public class SpringAopDemoApplication {
 	    // demoTheAfterThrowingAdvice(theAccountDAO);
 	    // demoTheAfterAdvice(theAccountDAO);
 	    // demoTheAroundAdvide(theTrafficFortuneService);
-	    demoTheAroundAdvideHandleException(theTrafficFortuneService);
+	    // demoTheAroundAdvideHandleException(theTrafficFortuneService);
+	    demoTheAroundAdvideRethrowException(theTrafficFortuneService);
 	};
     }
 
+    private void demoTheAroundAdvideRethrowException(TrafficFortuneService theTrafficFortuneService) {
+	System.out.println("\nMain Program\n");
+	boolean tripWire = true;
+	System.out.println(theTrafficFortuneService.getFortunePlus(tripWire));
+	System.out.println("\nFinished");
+    }
+
+    @SuppressWarnings("unused")
     private void demoTheAroundAdvideHandleException(TrafficFortuneService theTrafficFortuneService) throws Exception {
 	System.out.println("\nMain Program\n");
 	boolean tripWire = true;
