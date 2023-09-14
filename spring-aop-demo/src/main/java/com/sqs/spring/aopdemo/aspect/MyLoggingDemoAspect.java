@@ -63,7 +63,13 @@ public class MyLoggingDemoAspect {
 	System.out.println(" # @Around : " + methodSign);
 	long begin = System.currentTimeMillis();
 
-	Object result = theProceedingJoinPoint.proceed();
+	Object result = null;
+	try {
+	    result = theProceedingJoinPoint.proceed();
+	} catch (Exception e) {
+	    System.out.println(" # " + e.getMessage());
+	    result = "Major accidente! But no worries!";
+	}
 
 	long end = System.currentTimeMillis();
 	long duration = end - begin;

@@ -26,10 +26,19 @@ public class SpringAopDemoApplication {
 	    // demoTheAfterReturningAdvice(theAccountDAO);
 	    // demoTheAfterThrowingAdvice(theAccountDAO);
 	    // demoTheAfterAdvice(theAccountDAO);
-	    demoTheAroundAdvide(theTrafficFortuneService);
+	    // demoTheAroundAdvide(theTrafficFortuneService);
+	    demoTheAroundAdvideHandleException(theTrafficFortuneService);
 	};
     }
 
+    private void demoTheAroundAdvideHandleException(TrafficFortuneService theTrafficFortuneService) throws Exception {
+	System.out.println("\nMain Program\n");
+	boolean tripWire = true;
+	System.out.println(theTrafficFortuneService.getFortune(tripWire));
+	System.out.println("\nFinished");
+    }
+
+    @SuppressWarnings("unused")
     private void demoTheAroundAdvide(TrafficFortuneService theTrafficFortuneService) {
 	System.out.println("\nMain Program\n");
 	System.out.println(theTrafficFortuneService.getFortune());
@@ -40,7 +49,6 @@ public class SpringAopDemoApplication {
     private void demoTheAfterAdvice(AccountDAO theAccountDAO) {
 	try {
 	    boolean tripWire = true;
-	    @SuppressWarnings("unused")
 	    List<Account> theAccounts = theAccountDAO.findAccounts(!tripWire);
 	    System.out.println("\n");
 	    theAccounts = theAccountDAO.findAccounts(tripWire);
